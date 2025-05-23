@@ -9,7 +9,7 @@ This project implements two distinct distributed computing paradigms:
 - **Task 1**: Traditional Mini-HPC cluster using MPI for distributed machine learning
 - **Task 2**: Hybrid HPC-Big Data cluster using Docker Swarm and Apache Spark
 
-Both approaches are evaluated on real-world bioinformatics datasets, specifically gene expression analysis for leukemia classification using the Golub dataset[^1].
+Both approaches are evaluated on real-world bioinformatics datasets, specifically gene expression analysis for leukemia classification using the Golub dataset.
 
 ## 🏗️ Architecture
 
@@ -42,13 +42,13 @@ Both approaches are evaluated on real-world bioinformatics datasets, specificall
 
 ## 📊 Datasets
 
-**Golub Leukemia Dataset**: Gene expression data for Acute Lymphoblastic Leukemia (ALL) vs Acute Myeloid Leukemia (AML) classification[^1]
+**Golub Leukemia Dataset**: Gene expression data for Acute Lymphoblastic Leukemia (ALL) vs Acute Myeloid Leukemia (AML) classification
 
 - **Training samples**: 38 samples across 7,129 genes
 - **Test samples**: 34 samples
 - **Challenge**: High-dimensional feature space with small sample size
 
-**MNIST Digits Dataset**: Used for initial MPI testing and validation[^3]
+**MNIST Digits Dataset**: Used for initial MPI testing and validation
 
 - **Samples**: 1,797 digit images (8x8 pixels)
 - **Classes**: 10 digits (0-9)
@@ -160,7 +160,7 @@ mpirun -np 4 --hostfile hostfile python distributed_gene_analysis.py
 
 ## 📈 Performance Results
 
-### MPI Implementation Results[^1]
+### MPI Implementation Results
 
 - **Training Time**: 0.0398 seconds (average across processes)
 - **Test Accuracy**: 58.82%
@@ -168,7 +168,7 @@ mpirun -np 4 --hostfile hostfile python distributed_gene_analysis.py
 - **Scalability**: Linear speedup with additional processes
 
 
-### Spark Implementation Results[^2]
+### Spark Implementation Results
 
 - **Training Time**: ~15-20 seconds (including overhead)
 - **Test Accuracy**: ~65-70% (improved with advanced feature selection)
@@ -189,7 +189,7 @@ mpirun -np 4 --hostfile hostfile python distributed_gene_analysis.py
 
 ## 🔬 Technical Implementation
 
-### MPI Approach[^1]
+### MPI Approach
 
 - **Data Distribution**: Manual data partitioning across processes
 - **Model Training**: Independent RandomForest models per process (50 estimators)
@@ -198,7 +198,7 @@ mpirun -np 4 --hostfile hostfile python distributed_gene_analysis.py
 - **Communication**: Point-to-point and collective MPI operations
 
 
-### Spark Approach[^2]
+### Spark Approach
 
 - **Data Processing**: Distributed DataFrames with automatic partitioning
 - **Feature Engineering**: MLlib pipeline with ChiSqSelector (1000 → 500 features)
@@ -222,36 +222,8 @@ project_hpc_hybrid_cluster/
 │   ├── data_set_ALL_AML_independent.csv # Test data
 │   └── actual.csv                     # Labels
 ├── screenshots/                       # Setup and results screenshots
-├── Final_Report.pdf                   # Comprehensive analysis report
-└── ml_job.slurm                      # Optional SLURM job script
+└── Final_Report.pdf                   # Comprehensive analysis report
 ```
-
-
-## 🛠️ Troubleshooting
-
-### Common MPI Issues
-
-```bash
-# Permission denied errors
-sudo chown -R $USER:$USER /home/$USER/.ssh
-chmod 600 ~/.ssh/id_rsa
-
-# MPI process binding issues  
-mpirun --mca btl_tcp_if_include eth0 -np 4 python script.py
-```
-
-
-### Docker Swarm Issues
-
-```bash
-# Service not starting
-docker service logs spark-cluster_spark-master
-
-# Network connectivity
-docker network ls
-docker network inspect spark-cluster_spark-network
-```
-
 
 ## 🎯 Key Learning Outcomes
 
@@ -262,41 +234,12 @@ docker network inspect spark-cluster_spark-network
 - **Bioinformatics ML**: Real-world gene expression analysis
 - **Performance Analysis**: Comparative evaluation of different approaches
 
-
-## 📊 Evaluation Criteria[^5]
-
-- **VM setup and network configuration**: 20 pts
-- **Successful MPI Distributed ML**: 20 pts
-- **Bioinformatics ML pipeline on MPI**: 20 pts
-- **Docker Swarm Cluster setup**: 15 pts
-- **Distributed Spark ML execution**: 15 pts
-- **Report \& presentation**: 10 pts
-
-
-## 🚀 Bonus Extensions[^5]
-
-- Add a 4th VM node and benchmark performance gains
-- Deploy HDFS alongside Spark for distributed storage
-- Integrate TensorFlow Distributed Training
-- Use JupyterHub for interactive cluster computing
-- Monitor with Grafana + Prometheus
-
-
 ## 📚 References
 
 - [OpenMPI Documentation](https://www.open-mpi.org/doc/)
 - [Apache Spark MLlib Guide](https://spark.apache.org/docs/latest/ml-guide.html)
 - [Golub et al. (1999) - Molecular Classification of Cancer](https://www.science.org/doi/10.1126/science.286.5439.531)
 - [Docker Swarm Documentation](https://docs.docker.com/engine/swarm/)
-
-
-## 🤝 Contributing
-
-This project was developed as part of an academic assignment[^5]. For questions or improvements:
-
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request with detailed description
 
 ## 📄 License
 
