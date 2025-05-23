@@ -1,5 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
-
 # Mini-HPC and Hybrid HPC-Big Data Clusters
 
 A comprehensive distributed computing project demonstrating both traditional HPC and modern Big Data processing approaches through machine learning on bioinformatics datasets.
